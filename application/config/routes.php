@@ -1,5 +1,5 @@
-`<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -49,6 +49,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = '';
+$route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// Auth
+$route['login'] = 'auth/login';
+$route['logout'] = 'auth/logout';
+
+// RT
+$route['rt'] = 'rt/index';
+$route['rt/(:any)'] = 'rt/$1';
+$route['rt/(:any)/(:any)'] = 'rt/$1/$2';
+$route['rt/(:any)/(:any)/(:any)'] = 'rt/$1/$2/$3';
+
+// Warga
+$route['warga'] = 'warga/index';
+$route['warga/(:any)'] = 'warga/$1';
+$route['warga/(:any)/(:any)'] = 'warga/$1/$2';
+$route['warga/(:any)/(:any)/(:any)'] = 'warga/$1/$2/$3';
+
+// Bendahara
+$route['bendahara'] = 'bendahara/index';
+$route['bendahara/(:any)'] = 'bendahara/$1';
+$route['bendahara/(:any)/(:any)'] = 'bendahara/$1/$2';
+
+// Sekretaris
+$route['sekretaris'] = 'sekretaris/index';
+$route['sekretaris/(:any)'] = 'sekretaris/$1';
+$route['sekretaris/(:any)/(:any)'] = 'sekretaris/$1/$2';
