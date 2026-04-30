@@ -6,7 +6,7 @@
                 <span class="material-symbols-outlined text-2xl sm:text-3xl md:text-4xl text-white" data-icon="account_balance">account_balance</span>
             </div>
             <h1 class="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-primary tracking-tight mb-1 italic">KampungOS</h1>
-            <p class="text-on-surface-variant font-label text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em]">Digital Town Hall</p>
+            <!-- <p class="text-on-surface-variant font-label text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em]">Digital Town Hall</p> -->
         </div>
 
         <div class="space-y-5 sm:space-y-6 md:space-y-7">

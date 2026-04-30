@@ -11,7 +11,7 @@
                 </div>
                 <h1 class="font-headline text-2xl font-bold text-primary tracking-tight">KampungOS</h1>
             </div>
-            <p class="text-xs text-on-surface-variant/70 mt-1">Manajemen Warga Digital</p>
+            <p class="text-xs text-on-surface-variant/70 mt-1">Platfrom Digital RT</p>
         </div>
 
         <?php
@@ -169,7 +169,7 @@
                 <div class="flex items-center gap-3 pl-2 border-l border-outline-variant/40">
                     <div class="text-right hidden lg:block">
                         <p class="text-sm font-bold text-on-surface"><?= $this->session->userdata('name') ?></p>
-                        <p class="text-[11px] font-semibold text-primary">Ketua RT 02 / RW 04</p>
+                        <p class="text-[11px] font-semibold text-primary"><?= $this->session->userdata('role')  ?> RT 02 / RW 04</p>
                     </div>
                     <div class="relative">
                         <div id="profileBtn"
