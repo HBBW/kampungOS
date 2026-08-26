@@ -23,8 +23,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// For Vercel, base_url MUST be empty so all URLs are relative (prevents CORS)
-$config['base_url'] = '';
+// Auto-detect base_url for Vercel or local
+$base_url_env = getenv('BASE_URL');
+$vercel_url = getenv('VERCEL_URL');
+if ($base_url_env) {
+    $config['base_url'] = rtrim($base_url_env, '/') . '/';
+} elseif ($vercel_url) {
+    $config['base_url'] = 'https://' . $vercel_url . '/';
+} else {
+    $config['base_url'] = '';
+}
 
 /*
 |--------------------------------------------------------------------------

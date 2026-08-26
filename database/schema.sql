@@ -134,7 +134,8 @@ INSERT INTO users (kk_number, nik, password, head_name, role, address, must_rese
 ('3275000000000003', '327500000003', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Budi Santoso', 'bendahara', 'Jl. Kampung Sari No. 8, RT 02/RW 04', 0),
 ('3275000000000004', '327500000004', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Dewi Lestari', 'warga', 'Jl. Kampung Sari No. 12, RT 02/RW 04', 0),
 ('3275000000000005', '327500000005', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Rudi Hermawan', 'warga', 'Jl. Kampung Sari No. 15, RT 02/RW 04', 0),
-('3275000000000006', '327500000006', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Rina Wati', 'warga', 'Jl. Kampung Sari No. 20, RT 02/RW 04', 0);
+('3275000000000006', '327500000006', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Rina Wati', 'warga', 'Jl. Kampung Sari No. 20, RT 02/RW 04', 0)
+ON CONFLICT (kk_number) DO NOTHING;
 
 -- =============================================
 -- SEED DATA - Sample Announcements
