@@ -3,10 +3,9 @@
 
         <div class="text-center mb-6 sm:mb-8 md:mb-10 animate-stagger stagger-1">
             <div class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary text-white rounded-2xl shadow-xl shadow-primary/20 mb-4 rotate-3 brand-icon hover:rotate-0 transition-transform duration-300">
-                <span class="material-symbols-outlined text-2xl sm:text-3xl md:text-4xl text-white" data-icon="account_balance">account_balance</span>
+                <span class="material-symbols-outlined text-2xl sm:text-3xl md:text-4xl text-white">account_balance</span>
             </div>
             <h1 class="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-primary tracking-tight mb-1 italic">KampungOS</h1>
-            <!-- <p class="text-on-surface-variant font-label text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em]">Digital Town Hall</p> -->
         </div>
 
         <div class="space-y-5 sm:space-y-6 md:space-y-7">
@@ -19,7 +18,7 @@
 
             <form id="loginForm" class="space-y-3 sm:space-y-4 md:space-y-5 animate-stagger stagger-3">
                 <div class="space-y-1.5">
-                    <label class="block font-label text-[9px] sm:text-[10px] md:text-[11px] font-bold text-on-surface-variant uppercase tracking-widest pl-1" for="id-number">Nomor NIK</label>
+                    <label class="block font-label text-[9px] sm:text-[10px] md:text-[11px] font-bold text-on-surface-variant uppercase tracking-widest pl-1" for="id_number">Nomor NIK</label>
                     <div class="relative group">
                         <input class="w-full px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3.5 bg-surface-container-low border border-transparent rounded-xl sm:rounded-2xl focus:bg-surface-container-lowest focus:border-primary/20 focus:ring-0 transition-all duration-300 text-on-surface font-body placeholder:text-outline/40 text-sm sm:text-base" id="id_number" name="id_number" placeholder="3275000..." type="text">
                     </div>
@@ -32,14 +31,14 @@
                     <div class="relative group">
                         <input class="w-full px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-3.5 bg-surface-container-low border border-transparent rounded-xl sm:rounded-2xl focus:bg-surface-container-lowest focus:border-primary/20 focus:ring-0 transition-all duration-300 text-on-surface font-body placeholder:text-outline/40 pr-10 sm:pr-12 md:pr-14 text-sm sm:text-base" id="password" name="password" placeholder="••••••••" type="password">
                         <button class="absolute right-2 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 text-outline/60 hover:text-primary transition-colors p-1 toggle-password" type="button">
-                            <span class="material-symbols-outlined text-base sm:text-lg md:text-xl" data-icon="visibility">visibility</span>
+                            <span class="material-symbols-outlined text-base sm:text-lg md:text-xl">visibility</span>
                         </button>
                     </div>
                 </div>
                 <div class="pt-1 sm:pt-2 md:pt-3">
                     <button class="w-full bg-primary text-white font-bold py-3 sm:py-3.5 md:py-4 rounded-xl sm:rounded-2xl shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-500 active:scale-[0.98] flex justify-center items-center gap-2 sm:gap-3 group cta-button" type="submit">
                         <span class="tracking-wide text-xs sm:text-sm md:text-base text-white">Masuk Sekarang</span>
-                        <span class="material-symbols-outlined text-sm sm:text-base md:text-lg text-white group-hover:translate-x-1 transition-transform duration-300" data-icon="arrow_forward">arrow_forward</span>
+                        <span class="material-symbols-outlined text-sm sm:text-base md:text-lg text-white group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
                     </button>
                 </div>
             </form>
@@ -47,7 +46,7 @@
             <div class="flex flex-col items-center gap-3 sm:gap-4 pt-1 sm:pt-2 md:pt-3 animate-stagger stagger-4">
                 <p class="text-on-surface-variant text-[10px] sm:text-xs font-body">Butuh bantuan akses?</p>
                 <button id="helpButton" class="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 bg-surface-container-high/50 hover:bg-surface-container-high rounded-full transition-all duration-300 border border-outline-variant/10">
-                    <span class="material-symbols-outlined text-sm sm:text-base md:text-lg text-primary" data-icon="support_agent">support_agent</span>
+                    <span class="material-symbols-outlined text-sm sm:text-base md:text-lg text-primary">support_agent</span>
                     <span class="text-[9px] sm:text-[10px] md:text-xs font-label font-bold text-on-surface uppercase tracking-wider">Hubungi Admin</span>
                 </button>
             </div>
@@ -68,8 +67,7 @@
         <a class="text-[8px] sm:text-[9px] md:text-[10px] text-outline hover:text-primary uppercase tracking-[0.15em] transition-colors font-medium" href="#">Help</a>
     </div>
     <p class="text-[7px] sm:text-[8px] md:text-[9px] text-outline/60 text-center uppercase tracking-[0.2em] font-medium leading-relaxed">
-        © 2026 KampungOS<br>
-        <span class="opacity-50 text-[6px] sm:text-[7px] md:text-[8px]">A Digital Town Hall Initiative</span>
+        &copy; 2026 KampungOS
     </p>
 </footer>
 
@@ -80,319 +78,199 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        // Logic Toggle Password
-        $('.toggle-password').on('click', function(e) {
-            e.preventDefault();
-            var passwordInput = $('#password');
-            var iconSpan = $(this).find('.material-symbols-outlined');
-            if (passwordInput.attr('type') === 'password') {
-                passwordInput.attr('type', 'text');
-                iconSpan.text('visibility_off');
-            } else {
-                passwordInput.attr('type', 'password');
-                iconSpan.text('visibility');
-            }
+$(document).ready(function() {
+    $('.toggle-password').on('click', function(e) {
+        e.preventDefault();
+        var passwordInput = $('#password');
+        var iconSpan = $(this).find('.material-symbols-outlined');
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            iconSpan.text('visibility_off');
+        } else {
+            passwordInput.attr('type', 'password');
+            iconSpan.text('visibility');
+        }
+    });
+
+    const PRIMARY = '#0F6E6B';
+    const ERROR = '#D44C3A';
+
+    const swalBase = {
+        customClass: {
+            popup: 'swal-popup-custom',
+            title: 'swal-title-custom',
+            confirmButton: 'swal-confirm-custom'
+        },
+        buttonsStyling: false
+    };
+
+    const btnConfirm = `<button class="swal2-confirm swal-confirm-custom" style="background:${PRIMARY};color:#fff;padding:0.6rem 1.5rem;border-radius:0.75rem;font-weight:700;font-size:0.875rem;cursor:pointer;border:none;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">OK</button>`;
+    const btnConfirmDeny = (leftBg, leftText, rightBg, rightText) => `
+        <div style="display:flex;gap:0.5rem;justify-content:center">
+            <button class="swal2-cancel" style="background:${leftBg};color:${leftText};padding:0.6rem 1.5rem;border-radius:0.75rem;font-weight:700;font-size:0.875rem;cursor:pointer;border:1px solid #D1D9D2;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Batal</button>
+            <button class="swal2-confirm" style="background:${rightBg};color:${rightText};padding:0.6rem 1.5rem;border-radius:0.75rem;font-weight:700;font-size:0.875rem;cursor:pointer;border:none;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Ya</button>
+        </div>`;
+
+    function showAlert(icon, title, text, opts = {}) {
+        Swal.fire({
+            ...swalBase,
+            icon: icon,
+            title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${opts.titleColor || PRIMARY}">${title}</span>`,
+            html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0.5rem 0 0">${text}</p>`,
+            confirmButtonHtml: btnConfirm,
+            showConfirmButton: true,
+            ...opts
+        });
+    }
+
+    $('#loginForm').on('submit', function(e) {
+        e.preventDefault();
+        var idNumber = $('#id_number').val().trim();
+        var password = $('#password').val();
+
+        if (!idNumber) {
+            showAlert('warning', 'NIK Kosong', 'Harap masukkan nomor NIK Anda.');
+            return;
+        }
+        if (!password) {
+            showAlert('warning', 'Password Kosong', 'Harap masukkan kata sandi.');
+            return;
+        }
+
+        Swal.fire({
+            ...swalBase,
+            title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Memproses...</span>`,
+            html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0">Sedang masuk ke sistem</p>`,
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => { Swal.showLoading(); }
         });
 
-        // Config UI Styling Swal Universal
-        const swalConfig = {
-            background: '#ffffff',
-            customClass: {
-                popup: 'rounded-[1.5rem] shadow-2xl border border-surface-container',
-                title: 'font-serif text-xl',
-                htmlContainer: 'text-on-surface-variant font-body text-sm',
-                confirmButton: 'rounded-xl px-6 py-2.5 font-bold tracking-wide transition-transform active:scale-95'
-            }
-        };
-
-        // Logic AJAX Login
-        $('#loginForm').on('submit', function(e) {
-            e.preventDefault();
-            var idNumber = $('#id_number').val().trim();
-            var password = $('#password').val();
-
-            if (!idNumber) {
-                Swal.fire({
-                    ...swalConfig,
-                    icon: 'warning',
-                    title: 'NIK kosong',
-                    text: 'Harap masukkan NIK',
-                    confirmButtonColor: '#00236f',
-                    customClass: {
-                        ...swalConfig.customClass,
-                        title: 'font-serif text-primary text-xl'
-                    }
-                });
-                return;
-            }
-            if (!password) {
-                Swal.fire({
-                    ...swalConfig,
-                    icon: 'warning',
-                    title: 'Password kosong',
-                    text: 'Harap masukkan kata sandi',
-                    confirmButtonColor: '#00236f',
-                    customClass: {
-                        ...swalConfig.customClass,
-                        title: 'font-serif text-primary text-xl'
-                    }
-                });
-                return;
-            }
-
-            Swal.fire({
-                ...swalConfig,
-                title: 'Memproses...',
-                text: 'Sedang login ke sistem',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-
-            $.ajax({
-                url: "<?= base_url('auth/login') ?>",
-                type: "POST",
-                data: {
-                    id_number: idNumber,
-                    password: password
-                },
-                dataType: "json",
-                success: function(res) {
-                    console.log("RES:", res);
-                    if (res.status) {
-                        Swal.fire({
-                            ...swalConfig,
-                            icon: 'success',
-                            title: 'Berhasil Login',
-                            timer: 1200,
-                            showConfirmButton: false,
-                            backdrop: `rgba(0, 35, 111, 0.4)`,
-                            customClass: {
-                                ...swalConfig.customClass,
-                                title: 'font-serif text-primary text-xl'
-                            }
-                        });
-                        setTimeout(() => {
-                            window.location.href = res.redirect;
-                        }, 1200);
-                    } else {
-                        Swal.fire({
-                            ...swalConfig,
-                            icon: 'error',
-                            title: 'Login gagal',
-                            text: res.message,
-                            confirmButtonColor: '#00236f',
-                            backdrop: `rgba(0, 0, 0, 0.4)`,
-                            customClass: {
-                                ...swalConfig.customClass,
-                                title: 'font-serif text-error text-xl'
-                            }
-                        });
-                    }
-                },
-                error: function(xhr) {
-                    console.log("ERROR:", xhr.responseText);
+        $.ajax({
+            url: "<?= base_url('auth/login') ?>",
+            type: "POST",
+            data: { id_number: idNumber, password: password },
+            dataType: "json",
+            success: function(res) {
+                if (res.status) {
                     Swal.fire({
-                        ...swalConfig,
-                        icon: 'error',
-                        title: 'Server Error',
-                        text: 'Terjadi kesalahan pada server',
-                        confirmButtonColor: '#ba1a1a',
-                        customClass: {
-                            ...swalConfig.customClass,
-                            title: 'font-serif text-error text-xl',
-                            popup: 'rounded-[1.5rem] shadow-2xl border border-error-container'
-                        }
+                        ...swalBase,
+                        icon: 'success',
+                        title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Berhasil Masuk</span>`,
+                        html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0">Selamat datang!</p>`,
+                        showConfirmButton: false,
+                        timer: 1200
                     });
+                    setTimeout(() => { window.location.href = res.redirect; }, 1200);
+                } else {
+                    showAlert('error', 'Login Gagal', res.message || 'NIK atau password salah', { titleColor: ERROR });
                 }
-            });
+            },
+            error: function() {
+                showAlert('error', 'Kesalahan Server', 'Terjadi masalah koneksi. Coba lagi nanti.', { titleColor: ERROR });
+            }
         });
+    });
 
-        // Modals Info
-        $('#helpButton').on('click', function() {
+    $('#helpButton').on('click', function() {
+        Swal.fire({
+            ...swalBase,
+            icon: 'info',
+            title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Hubungi Admin</span>`,
+            html: `
+                <div style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;text-align:center;padding:0.5rem 0">
+                    <div style="display:inline-flex;flex-direction:column;gap:0.75rem;background:#F4EFE8;padding:1rem 1.5rem;border-radius:0.75rem">
+                        <div style="display:flex;align-items:center;gap:0.5rem;justify-content:center"><span style="font-size:1rem">0804-1234-5678</span></div>
+                        <div style="display:flex;align-items:center;gap:0.5rem;justify-content:center"><span style="font-size:1rem">admin@kampungos.id</span></div>
+                    </div>
+                </div>`,
+            confirmButtonHtml: btnConfirm
+        });
+    });
+
+    $('a[href="#"]:not(:contains("Daftar"))').on('click', function(e) {
+        e.preventDefault();
+        var linkText = $(this).text().trim().toLowerCase();
+        if (linkText === 'privacy') {
             Swal.fire({
-                ...swalConfig,
+                ...swalBase,
                 icon: 'info',
-                title: 'Hubungi Admin',
-                confirmButtonColor: '#00236f',
-                customClass: {
-                    ...swalConfig.customClass,
-                    title: 'font-serif text-primary text-xl'
-                },
-                html: `
-             <div style="display: flex; gap: 2rem; background: #f8fafc; padding: 1rem 1.5rem; border-radius: 1rem; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 1rem; color: #1e293b; box-shadow: 0 2px 8px rgba(0,0,0,0.05); flex-wrap: wrap; align-items: center; justify-content: center;">
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    📞 <span style="font-weight: 500;">0804-1234-5678</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    📧 <span style="font-weight: 500;">admin@kampungos.id</span>
-                </div>
-            </div>
-            `
+                title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Kebijakan Privasi</span>`,
+                html: `<div style="font-family:'Public Sans',sans-serif;font-size:0.8rem;color:#4F5B5B;text-align:left;line-height:1.8">
+                    <p>KampungOS menjaga kerahasiaan data pribadi seluruh warga. Data yang dikumpulkan hanya digunakan untuk keperluan administrasi RT.</p>
+                    <p>Data yang disimpan meliputi: NIK, Nomor KK, nama, alamat, dan riwayat pengajuan surat.</p>
+                    <p>Data tidak akan dibagikan kepada pihak ketiga tanpa persetujuan.</p>
+                </div>`,
+                confirmButtonHtml: btnConfirm
             });
-        });
-        $('a[href="#"]').on('click', function(e) {
-            e.preventDefault();
+        } else if (linkText === 'terms') {
             Swal.fire({
-                ...swalConfig,
+                ...swalBase,
                 icon: 'info',
-                title: 'Segera Hadir',
-                text: 'Fitur pemulihan kata sandi akan tersedia segera.',
-                confirmButtonColor: '#00236f',
-                customClass: {
-                    ...swalConfig.customClass,
-                    title: 'font-serif text-primary text-xl'
-                }
+                title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Syarat & Ketentuan</span>`,
+                html: `<div style="font-family:'Public Sans',sans-serif;font-size:0.8rem;color:#4F5B5B;text-align:left;line-height:1.8">
+                    <p>Dengan menggunakan KampungOS, Anda menyetujui:</p>
+                    <p>1. Data yang diisi adalah benar dan dapat diverifikasi.</p>
+                    <p>2. Pengajuan surat tunduk pada proses verifikasi RT.</p>
+                    <p>3. Penyalahgunaan sistem dapat mengakibatkan pemblokiran akun.</p>
+                </div>`,
+                confirmButtonHtml: btnConfirm
             });
-        });
-        $('a:contains("Daftar Warga")').on('click', function(e) {
-            e.preventDefault();
+        } else if (linkText === 'help') {
             Swal.fire({
-                ...swalConfig,
+                ...swalBase,
                 icon: 'info',
-                title: 'Pendaftaran Warga',
-                confirmButtonColor: '#00236f',
-                customClass: {
-                    ...swalConfig.customClass,
-                    title: 'font-serif text-primary text-xl'
-                },
-                html: `
-                Silakan datang ke kantor desa<br>
-                atau hubungi:<br><br>
-                📞 0812-3456-7890
-            `
+                title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Bantuan</span>`,
+                html: `<div style="font-family:'Public Sans',sans-serif;font-size:0.8rem;color:#4F5B5B;text-align:left;line-height:1.8">
+                    <p><b>Lupa password?</b> Hubungi RT atau admin di <strong style="color:${PRIMARY}">0812-3456-7890</strong></p>
+                    <p><b>Belum terdaftar?</b> Datang ke kantor RT dengan membawa KK.</p>
+                    <p><b>Error teknis?</b> Hubungi admin di <strong style="color:${PRIMARY}">admin@kampungos.id</strong></p>
+                </div>`,
+                confirmButtonHtml: btnConfirm
             });
+        } else {
+            showAlert('info', 'Segera Hadir', 'Fitur ini akan tersedia dalam waktu dekat.');
+        }
+    });
+
+    $('a:contains("Daftar Warga")').on('click', function(e) {
+        e.preventDefault();
+        Swal.fire({
+            ...swalBase,
+            icon: 'info',
+            title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Pendaftaran Warga</span>`,
+            html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0">Silakan datang ke kantor desa atau hubungi<br><strong style="color:${PRIMARY}">0812-3456-7890</strong></p>`,
+            confirmButtonHtml: btnConfirm
         });
+    });
 
-        // CSS Animasi & Layout Responsive Center
-        var styleResponsive = $('<style>').text(`
-        * {
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        
-        body {
-            overflow-x: hidden;
-            overflow-y: auto;
-            width: 100%;
-            position: relative;
-            /* PERUBAHAN UTAMA: Agar ke-tengah di HP */
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
-        }
-        
-        html {
-            overflow-x: hidden;
-            overflow-y: auto;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* --- Animasi Staggered Entrance Halus --- */
-        .login-container {
-            animation: containerEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .animate-stagger {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: itemEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
+    var styleResponsive = $('<style>').text(`
+        body { overflow-x: hidden; overflow-y: auto; width: 100%; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; margin: 0; padding: 0; }
+        html { overflow-x: hidden; overflow-y: auto; width: 100%; height: 100%; }
+        .login-container { animation: containerEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .animate-stagger { opacity: 0; transform: translateY(20px); animation: itemEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .stagger-1 { animation-delay: 0.1s; }
         .stagger-2 { animation-delay: 0.2s; }
         .stagger-3 { animation-delay: 0.3s; }
         .stagger-4 { animation-delay: 0.4s; }
         .stagger-5 { animation-delay: 0.5s; }
         .stagger-6 { animation-delay: 0.6s; }
-
-        @keyframes containerEntrance {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes itemEntrance {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Ambient Background Anim */
-        .animate-pulse-slow {
-            animation: pulse-slow 8s infinite alternate ease-in-out;
-        }
-
-        @keyframes pulse-slow {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.1); opacity: 0.8; }
-        }
-        /* -------------------------------------- */
-        
-        @media (min-width: 1025px) {
-            body {
-                justify-content: center;
-                overflow-y: hidden;
-            }
-            
-            .login-container {
-                justify-content: center !important;
-                min-height: auto !important;
-            }
-            
-            footer {
-                position: relative;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .login-container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            .cta-button {
-                font-size: 0.9rem;
-            }
-            input, button {
-                font-size: 16px;
-            }
-        }
-        
-        @media (min-width: 641px) and (max-width: 768px) {
-            .login-container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-        
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .login-container {
-                padding-left: 3rem;
-                padding-right: 3rem;
-            }
-        }
-        
-        @media (min-width: 1025px) {
-            .login-container {
-                padding-left: 4rem;
-                padding-right: 4rem;
-                padding-top: 0;
-                padding-bottom: 0;
-            }
-            .max-w-md {
-                max-width: 28rem;
-            }
-        }
-        
-        input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px #fbf9f5, 0 0 0 4px #00236f;
-        }
+        @keyframes containerEntrance { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+        @keyframes itemEntrance { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-pulse-slow { animation: pulse-slow 8s infinite alternate ease-in-out; }
+        @keyframes pulse-slow { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.1); opacity: 0.8; } }
+        .swal2-popup { border-radius: 1.25rem !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15) !important; padding: 1.75rem 1.5rem 1.25rem !important; border: 1px solid #D1D9D2; }
+        .swal2-icon { margin: 0 auto 0.75rem !important; }
+        .swal2-icon .swal2-icon-content { font-size: 2.5rem !important; }
+        .swal2-title { padding: 0 !important; margin-bottom: 0.25rem !important; }
+        .swal2-html-container { margin: 0 !important; padding: 0 !important; }
+        input:focus { outline: none; box-shadow: 0 0 0 2px #fbf9f5, 0 0 0 4px ${PRIMARY}; }
+        @media (min-width: 1025px) { body { justify-content: center; overflow-y: hidden; } .login-container { justify-content: center !important; min-height: auto !important; } }
+        @media (max-width: 640px) { .login-container { padding-left: 1rem; padding-right: 1rem; } .cta-button { font-size: 0.9rem; } input, button { font-size: 16px; } }
+        @media (min-width: 641px) and (max-width: 768px) { .login-container { padding-left: 2rem; padding-right: 2rem; } }
+        @media (min-width: 769px) and (max-width: 1024px) { .login-container { padding-left: 3rem; padding-right: 3rem; } }
+        @media (min-width: 1025px) { .login-container { padding-left: 4rem; padding-right: 4rem; padding-top: 0; padding-bottom: 0; } .max-w-md { max-width: 28rem; } }
     `);
-        $('head').append(styleResponsive);
-    });
+    $('head').append(styleResponsive);
+});
 </script>

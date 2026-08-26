@@ -87,14 +87,12 @@ class MY_Controller extends CI_Controller
                 'label' => [
                     'rt' => 'Arsip Surat',
                     'sekretaris' => 'Administrasi Surat',
-                    'bendahara' => 'Surat',
                     'warga' => 'Surat Saya'
                 ],
                 'icon' => 'description',
                 'routes' => [
                     'rt' => 'rt/surat',
                     'sekretaris' => 'sekretaris/surat',
-                    'bendahara' => 'bendahara/surat',
                     'warga' => 'warga/surat'
                 ],
                 'match' => 'surat'

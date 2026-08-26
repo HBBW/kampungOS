@@ -1,0 +1,24 @@
+# Vendor dev-only (exclude, keep dompdf + deps)
+/vendor/phpunit/
+/vendor/sebastian*/
+/vendor/theseer/
+/vendor/doctrine/
+/vendor/myclabs/
+/vendor/nikic/
+/vendor/phar-io/
+
+# System
+/vendor/composer/installed.json
+/vendor/composer/installed.php
+/vendor/composer/platform_check.php
+
+# Other
+/node_modules/
+.env
+*.log
+.DS_Store
+application/cache/*
+application/logs/*
+!application/cache/index.html
+!application/logs/index.html
+tailwind.config.js

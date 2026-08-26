@@ -44,6 +44,7 @@
                             "surface-variant": "#4F5B5B",
                         },
                         error: "#D44C3A",
+                        success: "#2a6038",
                         outline: "#B0B8B2",
                         "outline-variant": "#D1D9D2",
                         background: "#F8F6F2",
@@ -78,6 +79,15 @@
         .btn-action:active { transform: scale(0.96); }
         .animate-fade-in { animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+        #reportModal .modal-overlay { opacity: 0; transition: opacity 0.25s ease; }
+        #reportModal:not(.hidden) .modal-overlay { opacity: 1; }
+        #reportModal .modal-panel { transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        #reportModal:not(.hidden) .modal-panel { transform: translateY(0); }
+        @media (min-width: 640px) {
+            #reportModal .modal-panel { transform: translateY(16px) scale(0.96); opacity: 0; }
+            #reportModal:not(.hidden) .modal-panel { transform: translateY(0) scale(1); opacity: 1; }
+        }
     </style>
 </head>
 

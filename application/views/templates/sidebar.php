@@ -64,14 +64,12 @@
                 'label' => [
                     'rt' => 'Arsip Surat',
                     'sekretaris' => 'Administrasi Surat',
-                    'bendahara' => 'Surat',
                     'warga' => 'Surat Saya'
                 ],
                 'icon' => 'description',
                 'routes' => [
                     'rt' => 'rt/surat',
                     'sekretaris' => 'sekretaris/surat',
-                    'bendahara' => 'bendahara/surat',
                     'warga' => 'warga/surat'
                 ],
                 'match' => 'surat'
@@ -123,9 +121,12 @@
                     <span><?= $label ?></span>
 
                     <?php if ($menu['icon'] == 'description' && in_array($role, ['rt', 'sekretaris'])): ?>
+                        <?php $pending_letters = $this->db->where('status', 'pending')->count_all_results('letter_requests'); ?>
+                        <?php if ($pending_letters > 0): ?>
                         <span class="ml-auto text-[10px] bg-red-500 text-white px-2 py-0.5 rounded-full">
-                            !
+                            <?= $pending_letters ?>
                         </span>
+                        <?php endif; ?>
                     <?php endif; ?>
 
                 </a>
@@ -136,12 +137,12 @@
 
         <!-- FOOTER -->
         <div class="px-3 py-5 border-t border-outline-variant/30 space-y-1">
-            <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant/80 hover:bg-surface-container-low rounded-xl transition">
+            <a href="<?= base_url('settings') ?>" class="flex items-center gap-3 px-4 py-2.5 text-on-surface-variant/80 hover:bg-surface-container-low rounded-xl transition">
                 <span class="material-symbols-outlined">settings</span>
                 <span>Pengaturan</span>
             </a>
 
-            <a id="logoutBtn" class="flex items-center gap-3 px-4 py-2.5 text-error/80 hover:bg-error/5 rounded-xl transition">
+            <a href="#" id="logoutBtn" class="flex items-center gap-3 px-4 py-2.5 text-error/80 hover:bg-error/5 rounded-xl transition">
                 <span class="material-symbols-outlined">logout</span>
                 <span>Keluar</span>
             </a>
@@ -162,14 +163,15 @@
                     <span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
                     <input type="text" placeholder="Cari warga, surat..." class="bg-transparent border-none focus:outline-none text-sm w-48">
                 </div>
-                <button class="p-2 rounded-full hover:bg-surface-container-low relative">
+                <button id="notifBtn" class="p-2 rounded-full hover:bg-surface-container-low relative">
                     <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-                    <span class="absolute top-2 right-2 w-2 h-2 bg-tertiary rounded-full ring-1 ring-surface"></span>
+                    <?php $unread = 0; if ($this->session->userdata('user_id')) { $unread = $this->db->where('user_id', $this->session->userdata('user_id'))->where('is_read', 0)->count_all_results('notifications'); } ?>
+                    <span id="notifBadge" class="<?= $unread > 0 ? '' : 'hidden' ?> absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-error text-white text-[9px] font-bold rounded-full flex items-center justify-center px-1"><?= $unread ?></span>
                 </button>
                 <div class="flex items-center gap-3 pl-2 border-l border-outline-variant/40">
                     <div class="text-right hidden lg:block">
-                        <p class="text-sm font-bold text-on-surface"><?= $this->session->userdata('name') ?></p>
-                        <p class="text-[11px] font-semibold text-primary"><?= $this->session->userdata('role')  ?> RT 02 / RW 04</p>
+                        <p class="text-sm font-bold text-on-surface"><?= htmlspecialchars($this->session->userdata('name')) ?></p>
+                        <p class="text-[11px] font-semibold text-primary"><?= htmlspecialchars($this->session->userdata('role'))  ?> RT 02 / RW 04</p>
                     </div>
                     <div class="relative">
                         <div id="profileBtn"
@@ -180,9 +182,9 @@
                         <div id="profileDropdown"
                             class="hidden absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-lg border border-outline-variant/40 overflow-hidden z-50">
                             <div class="px-4 py-3 border-b text-sm text-on-surface-variant">
-                                <?= $this->session->userdata('name') ?>
+                                <?= htmlspecialchars($this->session->userdata('name')) ?>
                             </div>
-                            <a href="#" class="flex items-center gap-2 px-4 py-3 text-sm hover:bg-surface-container-low transition">
+                            <a href="<?= base_url('settings') ?>" class="flex items-center gap-2 px-4 py-3 text-sm hover:bg-surface-container-low transition">
                                 <span class="material-symbols-outlined text-sm">settings</span>
                                 Pengaturan
                             </a>

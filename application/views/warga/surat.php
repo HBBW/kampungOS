@@ -1,8 +1,6 @@
-<!-- Content Area -->
 <div class="flex-1 p-4 sm:p-6 md:p-8 w-full animate-fade-in">
     <div class="max-w-fit mx-auto w-full">
 
-        <!-- Header Section -->
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-8">
             <div>
                 <h2 class="text-3xl font-headline font-bold text-on-surface">Layanan Surat Digital</h2>
@@ -14,64 +12,59 @@
             </button>
         </div>
 
-        <!-- Main Grid Layout -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-            <!-- LEFT COLUMN: Active Requests & History (8 cols) -->
             <div class="lg:col-span-8 space-y-6">
-                <!-- Active Requests Card -->
                 <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-card border border-outline-variant/20">
                     <div class="flex flex-wrap justify-between items-center gap-3 mb-5">
                         <h3 class="text-xl font-headline font-bold text-on-surface">Status Pengajuan</h3>
-                        <a href="#" class="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
-                            Lihat Semua <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                        </a>
                     </div>
 
                     <div class="space-y-3">
-                        <!-- Request 1 - In Progress -->
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant/20 gap-3">
-                            <div class="flex items-center gap-4">
-                                <div class="w-11 h-11 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary flex-shrink-0">
-                                    <span class="material-symbols-outlined text-2xl">home_work</span>
+                        <?php if (!empty($my_letters)): ?>
+                            <?php foreach ($my_letters as $letter): ?>
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant/20 gap-3">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                                            <span class="material-symbols-outlined text-2xl">description</span>
+                                        </div>
+                                        <div>
+                                            <?php $type_labels = ['domisili' => 'SK Domisili', 'usaha' => 'SKU (Usaha)', 'nikah' => 'Surat Nikah', 'skck' => 'SKCK']; ?>
+                                            <h4 class="font-bold text-on-surface"><?= $type_labels[$letter->type] ?? htmlspecialchars($letter->type) ?></h4>
+                                            <p class="text-xs text-on-surface-variant">Diajukan: <?= date('d M Y', strtotime($letter->created_at)) ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="text-left sm:text-right">
+                                        <?php if ($letter->status == 'pending'): ?>
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full bg-stone-100 text-stone-600 text-xs font-semibold mb-1">
+                                                <span class="w-2 h-2 bg-stone-400 rounded-full mr-2"></span>
+                                                Menunggu
+                                            </span>
+                                        <?php elseif ($letter->status == 'diproses'): ?>
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold mb-1">
+                                                <span class="w-2 h-2 bg-secondary rounded-full mr-2 animate-pulse"></span>
+                                                Diproses Ketua RT
+                                            </span>
+                                            <p class="text-[10px] text-on-surface-variant mt-1">Estimasi selesai: Besok</p>
+                                        <?php else: ?>
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-1">
+                                                <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
+                                                Selesai & Digital Sign
+                                            </span>
+                                            <p class="text-[10px] text-primary font-semibold mt-1">Siap diunduh</p>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-on-surface">Surat Keterangan Domisili</h4>
-                                    <p class="text-xs text-on-surface-variant">Diajukan: 12 Okt 2023 • ID: #SKD-9921</p>
-                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="text-center py-8">
+                                <span class="material-symbols-outlined text-4xl text-on-surface-variant/30 mb-2">folder_off</span>
+                                <p class="text-sm text-on-surface-variant">Belum ada pengajuan surat</p>
                             </div>
-                            <div class="text-left sm:text-right">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold mb-1">
-                                    <span class="w-2 h-2 bg-secondary rounded-full mr-2 animate-pulse"></span>
-                                    Diproses Ketua RT
-                                </span>
-                                <p class="text-[10px] text-on-surface-variant mt-1">Estimasi selesai: Besok</p>
-                            </div>
-                        </div>
-
-                        <!-- Request 2 - Completed -->
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant/20 gap-3">
-                            <div class="flex items-center gap-4">
-                                <div class="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                                    <span class="material-symbols-outlined text-2xl">favorite</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-on-surface">Surat Pengantar Nikah</h4>
-                                    <p class="text-xs text-on-surface-variant">Diajukan: 08 Okt 2023 • ID: #SPN-8842</p>
-                                </div>
-                            </div>
-                            <div class="text-left sm:text-right">
-                                <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-1">
-                                    <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                                    Selesai & Digital Sign
-                                </span>
-                                <p class="text-[10px] text-primary font-semibold mt-1">Siap diunduh</p>
-                            </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
 
-                <!-- History Table -->
                 <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-card border border-outline-variant/20">
                     <h3 class="text-xl font-headline font-bold text-on-surface mb-5">Riwayat Surat</h3>
 
@@ -80,69 +73,54 @@
                             <thead>
                                 <tr class="border-b border-outline-variant/20">
                                     <th class="pb-3 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Jenis Surat</th>
-                                    <th class="pb-3 text-xs font-bold text-on-surface-variant uppercase tracking-wider hidden sm:table-cell">Tanggal Selesai</th>
-                                    <th class="pb-3 text-xs font-bold text-on-surface-variant uppercase tracking-wider hidden md:table-cell">Keperluan</th>
+                                    <th class="pb-3 text-xs font-bold text-on-surface-variant uppercase tracking-wider hidden sm:table-cell">Tanggal</th>
+                                    <th class="pb-3 text-xs font-bold text-on-surface-variant uppercase tracking-wider hidden md:table-cell">Status</th>
                                     <th class="pb-3 text-right"></th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-outline-variant/10">
-                                <tr class="table-row-hover">
-                                    <td class="py-4">
-                                        <div class="flex items-center gap-3">
-                                            <span class="material-symbols-outlined text-on-surface-variant">description</span>
-                                            <span class="font-semibold text-sm text-on-surface">SKCK (Pengantar)</span>
-                                        </div>
-                                        <div class="sm:hidden text-xs text-on-surface-variant mt-1">15 Sep 2023</div>
-                                    </td>
-                                    <td class="py-4 text-sm text-on-surface-variant hidden sm:table-cell">15 Sep 2023</td>
-                                    <td class="py-4 text-sm text-on-surface-variant hidden md:table-cell">Melamar Pekerjaan</td>
-                                    <td class="py-4 text-right">
-                                        <button class="download-btn p-2 text-primary hover:bg-primary/10 rounded-lg transition">
-                                            <span class="material-symbols-outlined text-sm">download</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="table-row-hover">
-                                    <td class="py-4">
-                                        <div class="flex items-center gap-3">
-                                            <span class="material-symbols-outlined text-on-surface-variant">description</span>
-                                            <span class="font-semibold text-sm text-on-surface">Keterangan Usaha</span>
-                                        </div>
-                                        <div class="sm:hidden text-xs text-on-surface-variant mt-1">02 Agu 2023</div>
-                                    </td>
-                                    <td class="py-4 text-sm text-on-surface-variant hidden sm:table-cell">02 Agu 2023</td>
-                                    <td class="py-4 text-sm text-on-surface-variant hidden md:table-cell">Kredit Usaha Rakyat</td>
-                                    <td class="py-4 text-right">
-                                        <button class="download-btn p-2 text-primary hover:bg-primary/10 rounded-lg transition">
-                                            <span class="material-symbols-outlined text-sm">download</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="table-row-hover">
-                                    <td class="py-4">
-                                        <div class="flex items-center gap-3">
-                                            <span class="material-symbols-outlined text-on-surface-variant">description</span>
-                                            <span class="font-semibold text-sm text-on-surface">Domisili</span>
-                                        </div>
-                                        <div class="sm:hidden text-xs text-on-surface-variant mt-1">10 Mei 2023</div>
-                                    </td>
-                                    <td class="py-4 text-sm text-on-surface-variant hidden sm:table-cell">10 Mei 2023</td>
-                                    <td class="py-4 text-sm text-on-surface-variant hidden md:table-cell">Buka Rekening Bank</td>
-                                    <td class="py-4 text-right">
-                                        <button class="download-btn p-2 text-primary hover:bg-primary/10 rounded-lg transition">
-                                            <span class="material-symbols-outlined text-sm">download</span>
-                                        </button>
-                                    </td>
-                                </tr>
+                                <?php if (!empty($my_letters)): ?>
+                                    <?php foreach ($my_letters as $letter): ?>
+                                        <tr class="table-row-hover">
+                                            <td class="py-4">
+                                                <div class="flex items-center gap-3">
+                                                    <span class="material-symbols-outlined text-on-surface-variant">description</span>
+                                                    <?php $type_labels = ['domisili' => 'SK Domisili', 'usaha' => 'SKU (Usaha)', 'nikah' => 'Surat Nikah', 'skck' => 'SKCK']; ?>
+                                            <span class="font-semibold text-sm text-on-surface"><?= $type_labels[$letter->type] ?? htmlspecialchars($letter->type) ?></span>
+                                                </div>
+                                                <div class="sm:hidden text-xs text-on-surface-variant mt-1"><?= date('d M Y', strtotime($letter->created_at)) ?></div>
+                                            </td>
+                                            <td class="py-4 text-sm text-on-surface-variant hidden sm:table-cell"><?= date('d M Y', strtotime($letter->created_at)) ?></td>
+                                            <td class="py-4 text-sm hidden md:table-cell">
+                                                <?php if ($letter->status == 'pending'): ?>
+                                                    <span class="text-stone-500 font-semibold">Menunggu</span>
+                                                <?php elseif ($letter->status == 'diproses'): ?>
+                                                    <span class="text-secondary font-semibold">Diproses</span>
+                                                <?php else: ?>
+                                                    <span class="text-primary font-semibold">Selesai</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="py-4 text-right">
+                                                <?php if ($letter->status == 'approved'): ?>
+                                                    <a href="<?= base_url('pdf/surat/' . $letter->id) ?>" target="_blank" class="download-btn p-2 text-primary hover:bg-primary/10 rounded-lg transition inline-flex items-center">
+                                                        <span class="material-symbols-outlined text-sm">download</span>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="4" class="py-8 text-center text-on-surface-variant text-sm">Belum ada riwayat surat</td>
+                                    </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: Letter Types & Help (4 cols) -->
             <div class="lg:col-span-4 space-y-6">
-                <!-- Help Card -->
                 <div class="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-6 text-white relative overflow-hidden shadow-large">
                     <div class="absolute -right-4 -bottom-4 opacity-10">
                         <span class="material-symbols-outlined text-7xl" style="font-variation-settings: 'FILL' 1;">help_center</span>
@@ -157,7 +135,6 @@
                     </div>
                 </div>
 
-                <!-- Letter Types Selection -->
                 <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-card border border-outline-variant/20">
                     <h3 class="text-lg font-headline font-bold text-on-surface mb-5">Pilih Jenis Surat</h3>
                     <div class="space-y-3">

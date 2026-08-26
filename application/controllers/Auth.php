@@ -80,7 +80,7 @@ class Auth extends CI_Controller
             redirect('auth');
         }
 
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', ['judul' => 'Reset Password']);
         $this->load->view('Auth/reset_password_view');
         $this->load->view('templates/footer');
     }

@@ -65,7 +65,7 @@
                     </div>
 
                     <button type="submit" id="submitBtn"
-                        class="w-full bg-primary text-on-primary rounded-xl py-4 px-6 flex items-center justify-center gap-2 font-semibold shadow-lg shadow-primary/20 active:scale-[0.98] transition-all duration-300 hover:brightness-110 mt-6">
+                        class="w-full bg-primary text-white rounded-xl py-4 px-6 flex items-center justify-center gap-2 font-semibold shadow-lg shadow-primary/20 active:scale-[0.98] transition-all duration-300 hover:brightness-110 mt-6">
                         <span>Simpan Password</span>
                         <span class="material-symbols-outlined text-lg">arrow_forward</span>
                     </button>
@@ -95,10 +95,25 @@
 
 <script>
     $(document).ready(function() {
+        const PRIMARY = '#0F6E6B';
+        const ERROR = '#D44C3A';
+
+        function showAlert(icon, title, text, opts = {}) {
+            Swal.fire({
+                icon: icon,
+                title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${opts.titleColor || PRIMARY}">${title}</span>`,
+                html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0.5rem 0 0">${text}</p>`,
+                confirmButtonText: 'OK',
+                confirmButtonColor: PRIMARY,
+                buttonsStyling: false,
+                customClass: { confirmButton: 'rounded-xl px-6 py-2.5 font-bold' },
+                ...opts
+            });
+        }
+
         $('.toggle-pwd').click(function() {
             let input = $('#newPassword');
             let icon = $(this).find('span');
-
             if (input.attr('type') === 'password') {
                 input.attr('type', 'text');
                 icon.text('visibility_off');
@@ -111,7 +126,6 @@
         $('.toggle-confirm').click(function() {
             let input = $('#confirmPassword');
             let icon = $(this).find('span');
-
             if (input.attr('type') === 'password') {
                 input.attr('type', 'text');
                 icon.text('visibility_off');
@@ -124,7 +138,6 @@
         $('#newPassword').on('input', function() {
             let val = $(this).val();
             let strength = 0;
-
             if (val.length >= 8) strength++;
             if (/[A-Z]/.test(val)) strength++;
             if (/[0-9]/.test(val)) strength++;
@@ -132,33 +145,22 @@
 
             let bar = $('#strengthBar');
             let text = $('#strengthText');
-
             let width = (strength / 4) * 100;
             bar.css('width', width + '%');
 
-            if (strength <= 1) {
-                text.text('Lemah');
-                bar.css('background', 'red');
-            } else if (strength == 2) {
-                text.text('Sedang');
-                bar.css('background', 'orange');
-            } else if (strength == 3) {
-                text.text('Kuat');
-                bar.css('background', 'blue');
-            } else {
-                text.text('Sangat Kuat');
-                bar.css('background', 'green');
-            }
+            if (strength <= 1) { text.text('Lemah'); bar.css('background', '#D44C3A'); }
+            else if (strength == 2) { text.text('Sedang'); bar.css('background', '#B4682D'); }
+            else if (strength == 3) { text.text('Kuat'); bar.css('background', '#0F6E6B'); }
+            else { text.text('Sangat Kuat'); bar.css('background', '#2a6038'); }
         });
 
         $('#resetForm').on('submit', function(e) {
             e.preventDefault();
-
             let password = $('#newPassword').val();
             let confirm = $('#confirmPassword').val();
 
-            if (password.length < 8) {
-                alert('Password minimal 8 karakter');
+            if (password.length < 6) {
+                showAlert('warning', 'Password Terlalu Pendek', 'Minimal 6 karakter.');
                 return;
             }
 
@@ -169,35 +171,45 @@
                 $('#matchError').addClass('hidden');
             }
 
-            $('#submitBtn').prop('disabled', true).text('Loading...');
+            Swal.fire({
+                title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Simpan Password Baru?</span>`,
+                html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0">Password lama Anda akan digantikan.</p>`,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Simpan',
+                cancelButtonText: 'Batal',
+                confirmButtonColor: PRIMARY,
+                cancelButtonColor: '#D1D9D2',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'rounded-xl px-5 py-2 font-bold text-white',
+                    cancelButton: 'rounded-xl px-5 py-2 font-bold'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#submitBtn').prop('disabled', true).html('<span class="material-symbols-outlined animate-spin text-lg mr-2">progress_activity</span> Menyimpan...');
 
-            $.ajax({
-                url: "<?= base_url('auth/update_password') ?>",
-                type: "POST",
-                data: {
-                    password: password
-                },
-                dataType: "json",
-                success: function(res) {
-                    console.log(res);
-
-                    if (res.status) {
-                        alert('Password berhasil diupdate');
-
-                        window.location.href = res.redirect;
-                    } else {
-                        alert(res.message);
-                    }
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
-                    alert('Server error');
-                },
-                complete: function() {
-                    $('#submitBtn').prop('disabled', false).text('Simpan Password');
+                    $.ajax({
+                        url: "<?= base_url('auth/update_password') ?>",
+                        type: "POST",
+                        data: { password: password },
+                        dataType: "json",
+                        success: function(res) {
+                            if (res.status) {
+                                showAlert('success', 'Password Tersimpan', 'Anda akan dialihkan ke halaman login.');
+                                setTimeout(() => { window.location.href = res.redirect; }, 1500);
+                            } else {
+                                showAlert('error', 'Gagal', res.message || 'Terjadi kesalahan', { titleColor: ERROR });
+                                $('#submitBtn').prop('disabled', false).html('<span>Simpan Password</span><span class="material-symbols-outlined text-lg">arrow_forward</span>');
+                            }
+                        },
+                        error: function() {
+                            showAlert('error', 'Kesalahan Server', 'Terjadi masalah koneksi.', { titleColor: ERROR });
+                            $('#submitBtn').prop('disabled', false).html('<span>Simpan Password</span><span class="material-symbols-outlined text-lg">arrow_forward</span>');
+                        }
+                    });
                 }
             });
-
         });
     });
 </script>
