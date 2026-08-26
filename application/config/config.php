@@ -392,7 +392,9 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_driver'] = 'files';
+// Use cookie sessions on Vercel (serverless - no filesystem)
+$is_vercel = (ENVIRONMENT === 'production' && getenv('VERCEL_URL'));
+$config['sess_driver'] = $is_vercel ? 'cookie' : 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_samesite'] = 'Lax';
 $config['sess_expiration'] = 7200;
