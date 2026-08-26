@@ -115,9 +115,10 @@ $(document).ready(function() {
         Swal.fire({
             ...swalBase,
             icon: icon,
-            title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${opts.titleColor || PRIMARY}">${title}</span>`,
+            title: title,
             html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0.5rem 0 0">${text}</p>`,
-            confirmButtonHtml: btnConfirm,
+            confirmButtonText: 'OK',
+            confirmButtonColor: PRIMARY,
             showConfirmButton: true,
             ...opts
         });
@@ -163,11 +164,11 @@ $(document).ready(function() {
                     });
                     setTimeout(() => { window.location.href = res.redirect; }, 1200);
                 } else {
-                    showAlert('error', 'Login Gagal', res.message || 'NIK atau password salah', { titleColor: ERROR });
+                    showAlert('error', 'Login Gagal', res.message || 'NIK atau password salah');
                 }
             },
             error: function() {
-                showAlert('error', 'Kesalahan Server', 'Terjadi masalah koneksi. Coba lagi nanti.', { titleColor: ERROR });
+                showAlert('error', 'Kesalahan Server', 'Terjadi masalah koneksi. Coba lagi nanti.');
             }
         });
     });
@@ -184,7 +185,8 @@ $(document).ready(function() {
                         <div style="display:flex;align-items:center;gap:0.5rem;justify-content:center"><span style="font-size:1rem">admin@kampungos.id</span></div>
                     </div>
                 </div>`,
-            confirmButtonHtml: btnConfirm
+            confirmButtonText: 'OK',
+            confirmButtonColor: PRIMARY
         });
     });
 
@@ -201,7 +203,8 @@ $(document).ready(function() {
                     <p>Data yang disimpan meliputi: NIK, Nomor KK, nama, alamat, dan riwayat pengajuan surat.</p>
                     <p>Data tidak akan dibagikan kepada pihak ketiga tanpa persetujuan.</p>
                 </div>`,
-                confirmButtonHtml: btnConfirm
+                confirmButtonText: 'OK',
+            confirmButtonColor: PRIMARY
             });
         } else if (linkText === 'terms') {
             Swal.fire({
@@ -214,7 +217,8 @@ $(document).ready(function() {
                     <p>2. Pengajuan surat tunduk pada proses verifikasi RT.</p>
                     <p>3. Penyalahgunaan sistem dapat mengakibatkan pemblokiran akun.</p>
                 </div>`,
-                confirmButtonHtml: btnConfirm
+                confirmButtonText: 'OK',
+            confirmButtonColor: PRIMARY
             });
         } else if (linkText === 'help') {
             Swal.fire({
@@ -226,7 +230,8 @@ $(document).ready(function() {
                     <p><b>Belum terdaftar?</b> Datang ke kantor RT dengan membawa KK.</p>
                     <p><b>Error teknis?</b> Hubungi admin di <strong style="color:${PRIMARY}">admin@kampungos.id</strong></p>
                 </div>`,
-                confirmButtonHtml: btnConfirm
+                confirmButtonText: 'OK',
+            confirmButtonColor: PRIMARY
             });
         } else {
             showAlert('info', 'Segera Hadir', 'Fitur ini akan tersedia dalam waktu dekat.');
@@ -240,7 +245,8 @@ $(document).ready(function() {
             icon: 'info',
             title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${PRIMARY}">Pendaftaran Warga</span>`,
             html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0">Silakan datang ke kantor desa atau hubungi<br><strong style="color:${PRIMARY}">0812-3456-7890</strong></p>`,
-            confirmButtonHtml: btnConfirm
+            confirmButtonText: 'OK',
+            confirmButtonColor: PRIMARY
         });
     });
 

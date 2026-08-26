@@ -1,9 +1,20 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
 class Auth extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
+
+        // CORS headers for Vercel
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization');
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(200);
+            exit;
+        }
 
     }
 

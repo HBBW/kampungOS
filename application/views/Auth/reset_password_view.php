@@ -101,7 +101,7 @@
         function showAlert(icon, title, text, opts = {}) {
             Swal.fire({
                 icon: icon,
-                title: `<span style="font-family:'Newsreader',serif;font-size:1.15rem;font-weight:700;color:${opts.titleColor || PRIMARY}">${title}</span>`,
+                title: title,
                 html: `<p style="font-family:'Public Sans',sans-serif;font-size:0.875rem;color:#4F5B5B;margin:0.5rem 0 0">${text}</p>`,
                 confirmButtonText: 'OK',
                 confirmButtonColor: PRIMARY,
@@ -199,12 +199,12 @@
                                 showAlert('success', 'Password Tersimpan', 'Anda akan dialihkan ke halaman login.');
                                 setTimeout(() => { window.location.href = res.redirect; }, 1500);
                             } else {
-                                showAlert('error', 'Gagal', res.message || 'Terjadi kesalahan', { titleColor: ERROR });
+                                showAlert('error', 'Gagal', res.message || 'Terjadi kesalahan');
                                 $('#submitBtn').prop('disabled', false).html('<span>Simpan Password</span><span class="material-symbols-outlined text-lg">arrow_forward</span>');
                             }
                         },
                         error: function() {
-                            showAlert('error', 'Kesalahan Server', 'Terjadi masalah koneksi.', { titleColor: ERROR });
+                            showAlert('error', 'Kesalahan Server', 'Terjadi masalah koneksi.');
                             $('#submitBtn').prop('disabled', false).html('<span>Simpan Password</span><span class="material-symbols-outlined text-lg">arrow_forward</span>');
                         }
                     });

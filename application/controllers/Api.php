@@ -6,6 +6,16 @@ class Api extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
+        // CORS headers for Vercel
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, Authorization');
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(200);
+            exit;
+        }
+
         $this->load->model(['Report_model', 'Announcement_model', 'Letter_model', 'Cash_model', 'Notification_model']);
     }
 
