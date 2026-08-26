@@ -3,6 +3,11 @@
  * KampungOS - Vercel Serverless Entry Point
  */
 
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
 // Ensure we're in the right directory context
 $_SERVER['SCRIPT_FILENAME'] = dirname(__DIR__) . '/index.php';
 $_SERVER['SCRIPT_NAME'] = '/index.php';
