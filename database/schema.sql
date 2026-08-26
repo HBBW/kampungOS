@@ -200,3 +200,15 @@ CREATE INDEX idx_cash_transactions_created_at ON cash_transactions(created_at);
 CREATE INDEX idx_notifications_user_id ON notifications(user_id);
 CREATE INDEX idx_notifications_is_read ON notifications(is_read);
 CREATE INDEX idx_activity_logs_user_id ON activity_logs(user_id);
+
+-- =============================================
+-- CI SESSIONS TABLE (for Vercel serverless)
+-- =============================================
+CREATE TABLE IF NOT EXISTS ci_sessions (
+    id VARCHAR(128) NOT NULL,
+    ip_address VARCHAR(45) NOT NULL,
+    timestamp BIGINT NOT NULL DEFAULT 0,
+    data TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS ci_sessions_timestamp ON ci_sessions(timestamp);
+
